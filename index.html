@@ -7,111 +7,480 @@
 	body {margin-top: 30px;}
 	</style>
 	<script>
-		function display_random_hole_layout()
+		var theImages = {
+			"hazard____": "images/Hazard.png",
+			"teepad____": "images/Teepad.png",
+			"water_____": "images/Water.png",
+			"woods_1___": "images/Woods_1.png",
+			"woods_2___": "images/Woods_2.png",
+			"woods_3___": "images/Woods_3.png",
+			"basket____": "images/Basket.png",
+			"bushes_1__": "images/Bushes_1.png",
+			"bushes_2__": "images/Bushes_2.png",
+			"bushes_3__": "images/Bushes_3.png",
+			"fairway___": "images/Fairway.png",
+			"obstacle_1": "images/Obstacle_1.png",
+			"obstacle_2": "images/Obstacle_2.png",
+			"ob________": "images/OB.png"
+		}
+
+		var theLayouts = [
 		{
-			var theImages = {
-				"hazard____": "images/Hazard.png",
-				"teepad____": "images/Teepad.png",
-				"water_____": "images/Water.png",
-				"woods_1___": "images/Woods_1.png",
-				"woods_2___": "images/Woods_2.png",
-				"woods_3___": "images/Woods_3.png",
-				"basket____": "images/Basket.png",
-				"bushes_1__": "images/Bushes_1.png",
-				"bushes_2__": "images/Bushes_2.png",
-				"bushes_3__": "images/Bushes_3.png",
-				"fairway___": "images/Fairway.png",
-				"obstacle_1": "images/Obstacle_1.png",
-				"obstacle_2": "images/Obstacle_2.png",
-				"ob________": "images/OB.png"
+			name: "P4-1",
+			par: 4,
+			layout: { 
+				800: ["ob________", "ob________", "ob________", "ob________", "ob________"],
+				700: ["ob________", "fairway___", "woods_2___", "woods_1___", "ob________"],
+				600: ["ob________", "woods_3___", "basket____", "hazard____", "ob________"],
+				500: ["ob________", "fairway___", "woods_1___", "fairway___", "woods_2___"],
+				400: ["ob________", "bushes_3__", "fairway___", "fairway___", "ob________"],
+				300: ["ob________", "fairway___", "bushes_1__", "woods_3___", "ob________"],
+				200: ["ob________", "bushes_3__", "fairway___", "fairway___", "ob________"],
+				100: ["ob________", "woods_3___", "fairway___", "woods_1___", "ob________"],
+				  0: ["ob________", "ob________", "teepad____", "ob________", "ob________"]
+			}
+		},
+		{
+			name: "P4-2",
+			par: 4,
+			layout: { 
+				800: ["ob________", "ob________", "ob________", "ob________", "ob________"],
+				700: ["ob________", "ob________", "ob________", "ob________", "ob________"],
+				600: ["ob________", "water_____", "woods_3___", "water_____", "ob________"],
+				500: ["ob________", "woods_1___", "basket____", "fairway___", "ob________"],
+				400: ["ob________", "fairway___", "woods_3___", "fairway___", "fairway___"],
+				300: ["ob________", "woods_2___", "woods_2___", "bushes_2__", "fairway___"],
+				200: ["ob________", "fairway___", "bushes_3__", "fairway___", "fairway___"],
+				100: ["ob________", "fairway___", "fairway___", "woods_1___", "ob________"],
+				  0: ["ob________", "ob________", "teepad____", "ob________", "ob________"]
+			}
+		},
+		{
+			name: "P4-3",
+			par: 4,
+			layout: { 
+				800: ["ob________", "ob________", "ob________", "ob________", "ob________"],
+				700: ["ob________", "ob________", "ob________", "ob________", "ob________"],
+				600: ["ob________", "ob________", "fairway___", "woods_3___", "woods_1___"],
+				500: ["ob________", "ob________", "fairway___", "basket____", "water_____"],
+				400: ["ob________", "ob________", "fairway___", "fairway___", "fairway___"],
+				300: ["ob________", "fairway___", "bushes_3__", "hazard____", "woods_2___"],
+				200: ["ob________", "woods_2___", "bushes_3__", "woods_1___", "ob________"],
+				100: ["ob________", "fairway___", "fairway___", "woods_1___", "ob________"],
+				  0: ["ob________", "ob________", "teepad____", "ob________", "ob________"]
+			}
+		},
+		{
+			name: "P4-4",
+			par: 4,
+			layout: { 
+				800: ["ob________", "ob________", "ob________", "ob________", "ob________"],
+				700: ["ob________", "woods_2___", "water_____", "woods_3___", "ob________"],
+				600: ["ob________", "fairway___", "basket____", "woods_1___", "ob________"],
+				500: ["ob________", "fairway___", "woods_3___", "fairway___", "ob________"],
+				400: ["ob________", "bushes_1__", "fairway___", "fairway___", "woods_1___"],
+				300: ["ob________", "water_____", "fairway___", "woods_1___", "ob________"],
+				200: ["ob________", "bushes_3__", "woods_3___", "bushes_2__", "ob________"],
+				100: ["ob________", "woods_3___", "fairway___", "woods_1___", "ob________"],
+				  0: ["ob________", "ob________", "teepad____", "ob________", "ob________"]
+			}
+		},
+		{
+			name: "P4-5",
+			par: 4,
+			layout: { 
+				800: ["ob________", "ob________", "ob________", "ob________", "ob________"],
+				700: ["ob________", "woods_2___", "woods_2___", "woods_3___", "ob________"],
+				600: ["ob________", "fairway___", "basket____", "hazard____", "ob________"],
+				500: ["ob________", "woods_1___", "woods_3___", "fairway___", "ob________"],
+				400: ["ob________", "bushes_1__", "fairway___", "fairway___", "fairway___"],
+				300: ["ob________", "bushes_2__", "water_____", "fairway___", "ob________"],
+				200: ["ob________", "fairway___", "woods_3___", "fairway___", "ob________"],
+				100: ["ob________", "ob________", "fairway___", "ob________", "ob________"],
+				  0: ["ob________", "ob________", "teepad____", "ob________", "ob________"]
+			}
+		},
+		{
+			name: "P4-6",
+			par: 4,
+			layout: { 
+				800: ["ob________", "ob________", "ob________", "ob________", "ob________"],
+				700: ["woods_2___", "woods_2___", "woods_1___", "ob________", "ob________"],
+				600: ["woods_3___", "basket____", "woods_1___", "woods_1___", "ob________"],
+				500: ["ob________", "water_____", "fairway___", "woods_1___", "ob________"],
+				400: ["woods_2___", "bushes_1__", "hazard____", "fairway___", "ob________"],
+				300: ["ob________", "bushes_2__", "fairway___", "fairway___", "ob________"],
+				200: ["ob________", "fairway___", "water_____", "woods_3___", "ob________"],
+				100: ["ob________", "woods_2___", "fairway___", "fairway___", "ob________"],
+				  0: ["ob________", "ob________", "teepad____", "ob________", "ob________"]
+			}
+		},
+		{
+			name: "P4-7",
+			par: 4,
+			layout: { 
+				800: ["ob________", "ob________", "ob________", "ob________", "ob________"],
+				700: ["ob________", "ob________", "woods_1___", "hazard____", "woods_2___"],
+				600: ["ob________", "ob________", "woods_2___", "basket____", "fairway___"],
+				500: ["ob________", "woods_1___", "fairway___", "woods_3___", "bushes_1__"],
+				400: ["ob________", "water_____", "water_____", "fairway___", "ob________"],
+				300: ["ob________", "woods_3___", "bushes_1__", "woods_2___", "fairway___"],
+				200: ["ob________", "hazard____", "fairway___", "woods_3___", "ob________"],
+				100: ["ob________", "woods_2___", "fairway___", "fairway___", "ob________"],
+				  0: ["ob________", "ob________", "teepad____", "ob________", "ob________"]
+			}
+		},
+		{
+			name: "P4-8",
+			par: 4,
+			layout: { 
+				800: ["ob________", "ob________", "ob________", "ob________", "ob________"],
+				700: ["fairway___", "fairway___", "woods_1___", "ob________", "ob________"],
+				600: ["fairway___", "basket____", "woods_2___", "woods_1___", "ob________"],
+				500: ["ob________", "fairway___", "fairway___", "woods_3___", "ob________"],
+				400: ["woods_3___", "water_____", "fairway___", "fairway___", "ob________"],
+				300: ["ob________", "fairway___", "bushes_1__", "fairway___", "ob________"],
+				200: ["ob________", "fairway___", "fairway___", "woods_3___", "ob________"],
+				100: ["ob________", "ob________", "fairway___", "fairway___", "woods_1___"],
+				  0: ["ob________", "ob________", "ob________", "teepad____", "ob________"]
+			}
+		},
+		{
+			name: "P4-9",
+			par: 4,
+			layout: { 
+				800: ["ob________", "ob________", "ob________", "ob________", "ob________"],
+				700: ["ob________", "ob________", "ob________", "ob________", "ob________"],
+				600: ["ob________", "woods_3___", "woods_2___", "hazard____", "ob________"],
+				500: ["ob________", "fairway___", "basket____", "bushes_1__", "ob________"],
+				400: ["ob________", "ob________", "water_____", "water_____", "fairway___"],
+				300: ["ob________", "bushes_2__", "fairway___", "woods_1___", "ob________"],
+				200: ["ob________", "woods_1___", "woods_2___", "fairway___", "ob________"],
+				100: ["ob________", "fairway___", "fairway___", "fairway___", "ob________"],
+				  0: ["ob________", "ob________", "teepad____", "ob________", "ob________"]
+			}
+		},
+		{
+			name: "P4-10",
+			par: 4,
+			layout: { 
+				800: ["ob________", "ob________", "ob________", "ob________", "ob________"],
+				700: ["ob________", "ob________", "ob________", "ob________", "ob________"],
+				600: ["ob________", "bushes_1__", "woods_2___", "fairway___", "ob________"],
+				500: ["ob________", "woods_3___", "basket____", "fairway___", "ob________"],
+				400: ["ob________", "fairway___", "woods_1___", "fairway___", "ob________"],
+				300: ["fairway___", "woods_1___", "hazard____", "bushes_2__", "ob________"],
+				200: ["fairway___", "woods_1___", "fairway___", "ob________", "ob________"],
+				100: ["fairway___", "fairway___", "fairway___", "ob________", "ob________"],
+				  0: ["ob________", "teepad____", "ob________", "ob________", "ob________"]
+			}
+		},
+		{
+			name: "P4-11",
+			par: 4,
+			layout: { 
+				800: ["ob________", "ob________", "ob________", "ob________", "ob________"],
+				700: ["ob________", "ob________", "woods_2___", "fairway___", "fairway___"],
+				600: ["ob________", "ob________", "bushes_2__", "basket____", "hazard____"],
+				500: ["ob________", "woods_3___", "woods_2___", "fairway___", "fairway___"],
+				400: ["ob________", "fairway___", "fairway___", "fairway___", "ob________"],
+				300: ["ob________", "woods_1___", "fairway___", "woods_1___", "woods_3___"],
+				200: ["ob________", "fairway___", "bushes_1__", "fairway___", "ob________"],
+				100: ["ob________", "ob________", "woods_3___", "fairway___", "fairway___"],
+				  0: ["ob________", "ob________", "ob________", "teepad____", "ob________"]
+			}
+		},
+		{
+			name: "P4-12",
+			par: 4,
+			layout: { 
+				800: ["ob________", "ob________", "ob________", "ob________", "ob________"],
+				700: ["ob________", "ob________", "ob________", "ob________", "ob________"],
+				600: ["ob________", "bushes_2__", "woods_3___", "woods_1___", "ob________"],
+				500: ["ob________", "water_____", "basket____", "water_____", "ob________"],
+				400: ["ob________", "woods_3___", "fairway___", "fairway___", "ob________"],
+				300: ["hazard____", "bushes_2__", "fairway___", "woods_2___", "fairway___"],
+				200: ["fairway___", "fairway___", "woods_1___", "fairway___", "ob________"],
+				100: ["fairway___", "fairway___", "fairway___", "ob________", "ob________"],
+				  0: ["ob________", "teepad____", "ob________", "ob________", "ob________"]
+			}
+		},
+		{
+			name: "P3-1",
+			par: 3,
+			layout: { 
+				800: ["ob________", "ob________", "ob________", "ob________", "ob________"],
+				700: ["ob________", "ob________", "ob________", "ob________", "ob________"],
+				600: ["ob________", "ob________", "ob________", "ob________", "ob________"],
+				500: ["ob________", "ob________", "ob________", "ob________", "ob________"],
+				400: ["woods_2___", "woods_3___", "fairway___", "ob________", "ob________"],
+				300: ["woods_1___", "basket____", "fairway___", "ob________", "ob________"],
+				200: ["ob________", "water_____", "water_____", "water_____", "ob________"],
+				100: ["ob________", "woods_3___", "bushes_1__", "fairway___", "ob________"],
+				  0: ["ob________", "teepad____", "ob________", "ob________", "ob________"]
+			}
+		},
+		{
+			name: "P3-2",
+			par: 3,
+			layout: { 
+				800: ["ob________", "ob________", "ob________", "ob________", "ob________"],
+				700: ["ob________", "ob________", "ob________", "ob________", "ob________"],
+				600: ["ob________", "ob________", "ob________", "ob________", "ob________"],
+				500: ["ob________", "fairway___", "woods_3___", "woods_1___", "ob________"],
+				400: ["ob________", "bushes_1__", "basket____", "water_____", "ob________"],
+				300: ["woods_1___", "bushes_2__", "water_____", "fairway___", "ob________"],
+				200: ["fairway___", "woods_2___", "fairway___", "woods_1___", "ob________"],
+				100: ["fairway___", "fairway___", "woods_1___", "fairway___", "ob________"],
+				  0: ["ob________", "teepad____", "ob________", "ob________", "ob________"]
+			}
+		},
+		{
+			name: "P3-3",
+			par: 3,
+			layout: { 
+				800: ["ob________", "ob________", "ob________", "ob________", "ob________"],
+				700: ["ob________", "ob________", "ob________", "ob________", "ob________"],
+				600: ["ob________", "ob________", "ob________", "ob________", "ob________"],
+				500: ["ob________", "woods_3___", "woods_3___", "woods_1___", "ob________"],
+				400: ["ob________", "fairway___", "basket____", "woods_2___", "ob________"],
+				300: ["woods_1___", "fairway___", "woods_2___", "fairway___", "ob________"],
+				200: ["ob________", "woods_2___", "fairway___", "ob________", "ob________"],
+				100: ["ob________", "fairway___", "fairway___", "woods_2___", "ob________"],
+				  0: ["ob________", "ob________", "teepad____", "ob________", "ob________"]
+			}
+		},
+		{
+			name: "P3-4",
+			par: 3,
+			layout: { 
+				800: ["ob________", "ob________", "ob________", "ob________", "ob________"],
+				700: ["ob________", "ob________", "ob________", "ob________", "ob________"],
+				600: ["ob________", "ob________", "ob________", "ob________", "ob________"],
+				500: ["ob________", "fairway___", "fairway___", "woods_1___", "ob________"],
+				400: ["ob________", "bushes_1__", "basket____", "woods_2___", "ob________"],
+				300: ["ob________", "bushes_2__", "woods_2___", "fairway___", "ob________"],
+				200: ["ob________", "fairway___", "fairway___", "woods_3___", "ob________"],
+				100: ["ob________", "fairway___", "fairway___", "fairway___", "ob________"],
+				  0: ["ob________", "ob________", "teepad____", "ob________", "ob________"]
+			}
+		},
+		{
+			name: "P3-5",
+			par: 3,
+			layout: { 
+				800: ["ob________", "ob________", "ob________", "ob________", "ob________"],
+				700: ["ob________", "ob________", "ob________", "ob________", "ob________"],
+				600: ["ob________", "ob________", "ob________", "ob________", "ob________"],
+				500: ["ob________", "bushes_1__", "bushes_3__", "fairway___", "ob________"],
+				400: ["ob________", "hazard____", "basket____", "woods_2___", "ob________"],
+				300: ["woods_1___", "fairway___", "fairway___", "fairway___", "ob________"],
+				200: ["woods_2___", "water_____", "fairway___", "ob________", "ob________"],
+				100: ["woods_3___", "fairway___", "woods_3___", "ob________", "ob________"],
+				  0: ["ob________", "teepad____", "ob________", "ob________", "ob________"]
+			}
+		},
+		{
+			name: "P3-6",
+			par: 3,
+			layout: { 
+				800: ["ob________", "ob________", "ob________", "ob________", "ob________"],
+				700: ["ob________", "ob________", "ob________", "ob________", "ob________"],
+				600: ["ob________", "ob________", "ob________", "ob________", "ob________"],
+				500: ["ob________", "woods_3___", "water_____", "water_____", "ob________"],
+				400: ["ob________", "bushes_1__", "basket____", "bushes_3__", "ob________"],
+				300: ["ob________", "fairway___", "hazard____", "woods_1___", "ob________"],
+				200: ["ob________", "hazard____", "woods_2___", "fairway___", "fairway___"],
+				100: ["ob________", "ob________", "fairway___", "fairway___", "woods_1___"],
+				  0: ["ob________", "ob________", "ob________", "teepad____", "ob________"]
+			}
+		},
+		{
+			name: "P5-1",
+			par: 5,
+			layout: { 
+				800: ["ob________", "hazard____", "basket____", "woods_2___", "ob________"],
+				700: ["ob________", "fairway___", "fairway___", "fairway___", "ob________"],
+				600: ["ob________", "ob________", "woods_2___", "fairway___", "woods_1___"],
+				500: ["ob________", "woods_3___", "fairway___", "fairway___", "ob________"],
+				400: ["ob________", "fairway___", "bushes_2__", "bushes_3__", "woods_2___"],
+				300: ["ob________", "fairway___", "woods_3___", "woods_1___", "ob________"],
+				200: ["ob________", "fairway___", "fairway___", "fairway___", "ob________"],
+				100: ["ob________", "woods_3___", "fairway___", "woods_1___", "ob________"],
+				  0: ["ob________", "ob________", "teepad____", "ob________", "ob________"]
+			}
+		},
+		{
+			name: "P5-2",
+			par: 5,
+			layout: { 
+				800: ["ob________", "ob________", "fairway___", "fairway___", "woods_1___"],
+				700: ["ob________", "ob________", "woods_2___", "basket____", "water_____"],
+				600: ["ob________", "fairway___", "fairway___", "woods_1___", "ob________"],
+				500: ["ob________", "hazard____", "fairway___", "fairway___", "ob________"],
+				400: ["fairway___", "fairway___", "woods_3___", "ob________", "ob________"],
+				300: ["woods_3___", "bushes_2__", "fairway___", "ob________", "ob________"],
+				200: ["woods_2___", "fairway___", "fairway___", "ob________", "ob________"],
+				100: ["fairway___", "fairway___", "woods_1___", "ob________", "ob________"],
+				  0: ["ob________", "teepad____", "ob________", "ob________", "ob________"]
+			}
+		},
+		{
+			name: "P5-3",
+			par: 5,
+			layout: { 
+				800: ["ob________", "woods_3___", "woods_2___", "woods_1___", "ob________"],
+				700: ["ob________", "fairway___", "basket____", "woods_2___", "ob________"],
+				600: ["ob________", "fairway___", "woods_3___", "fairway___", "ob________"],
+				500: ["ob________", "bushes_1__", "fairway___", "woods_2___", "ob________"],
+				400: ["woods_2___", "bushes_2__", "fairway___", "fairway___", "ob________"],
+				300: ["ob________", "fairway___", "woods_3___", "woods_1___", "ob________"],
+				200: ["ob________", "water_____", "fairway___", "water_____", "ob________"],
+				100: ["ob________", "woods_3___", "fairway___", "fairway___", "ob________"],
+				  0: ["ob________", "ob________", "teepad____", "ob________", "ob________"]
+			}
+		},
+		{
+			name: "P5-4",
+			par: 5,
+			layout: { 
+				800: ["ob________", "ob________", "ob________", "ob________", "ob________"],
+				700: ["woods_2___", "hazard____", "woods_2___", "ob________", "ob________"],
+				600: ["woods_3___", "basket____", "woods_3___", "ob________", "ob________"],
+				500: ["ob________", "fairway___", "fairway___", "woods_2___", "ob________"],
+				400: ["ob________", "fairway___", "woods_1___", "fairway___", "woods_1___"],
+				300: ["ob________", "bushes_2__", "woods_3___", "fairway___", "ob________"],
+				200: ["ob________", "woods_2___", "fairway___", "bushes_1__", "woods_3___"],
+				100: ["ob________", "woods_3___", "fairway___", "fairway___", "ob________"],
+				  0: ["ob________", "ob________", "teepad____", "ob________", "ob________"]
+			}
+		},
+		{
+			name: "P5-5",
+			par: 5,
+			layout: { 
+				800: ["ob________", "woods_3___", "basket____", "woods_1___", "ob________"],
+				700: ["ob________", "fairway___", "fairway___", "fairway___", "ob________"],
+				600: ["ob________", "ob________", "woods_3___", "hazard____", "woods_2___"],
+				500: ["ob________", "woods_1___", "fairway___", "fairway___", "ob________"],
+				400: ["ob________", "fairway___", "water_____", "bushes_1__", "woods_1___"],
+				300: ["ob________", "woods_2___", "bushes_3__", "fairway___", "water_____"],
+				200: ["ob________", "fairway___", "fairway___", "woods_2___", "ob________"],
+				100: ["ob________", "ob________", "fairway___", "woods_3___", "fairway___"],
+				  0: ["ob________", "ob________", "ob________", "teepad____", "ob________"]
+			}
+		},
+		{
+			name: "P5-6",
+			par: 5,
+			layout: { 
+				800: ["woods_2___", "basket____", "fairway___", "woods_1___", "ob________"],
+				700: ["ob________", "fairway___", "fairway___", "fairway___", "ob________"],
+				600: ["ob________", "ob________", "woods_3___", "fairway___", "woods_2___"],
+				500: ["ob________", "bushes_2__", "fairway___", "fairway___", "ob________"],
+				400: ["woods_3___", "water_____", "water_____", "woods_3___", "ob________"],
+				300: ["bushes_1__", "fairway___", "woods_2___", "ob________", "ob________"],
+				200: ["woods_2___", "fairway___", "fairway___", "woods_2___", "ob________"],
+				100: ["ob________", "fairway___", "fairway___", "fairway___", "ob________"],
+				  0: ["ob________", "ob________", "teepad____", "ob________", "ob________"]
+			}
+		},
+		{
+			name: "P5-7",
+			par: 5,
+			layout: { 
+				800: ["fairway___", "woods_3___", "hazard____", "ob________", "ob________"],
+				700: ["ob________", "woods_2___", "basket____", "fairway___", "ob________"],
+				600: ["ob________", "ob________", "woods_3___", "fairway___", "woods_2___"],
+				500: ["woods_1___", "bushes_2__", "fairway___", "hazard____", "ob________"],
+				400: ["ob________", "bushes_1__", "fairway___", "woods_3___", "ob________"],
+				300: ["ob________", "woods_1___", "fairway___", "fairway___", "water_____"],
+				200: ["ob________", "fairway___", "fairway___", "woods_2___", "ob________"],
+				100: ["ob________", "ob________", "woods_3___", "fairway___", "fairway___"],
+				  0: ["ob________", "ob________", "ob________", "teepad____", "ob________"]
+			}
+		},
+		{
+			name: "P5-8",
+			par: 5,
+			layout: { 
+				800: ["ob________", "woods_3___", "woods_2___", "woods_1___", "ob________"],
+				700: ["ob________", "fairway___", "basket____", "fairway___", "ob________"],
+				600: ["ob________", "fairway___", "bushes_1__", "fairway___", "ob________"],
+				500: ["hazard____", "fairway___", "woods_3___", "woods_1___", "ob________"],
+				400: ["ob________", "fairway___", "woods_3___", "fairway___", "ob________"],
+				300: ["ob________", "fairway___", "woods_1___", "bushes_2__", "fairway___"],
+				200: ["ob________", "woods_2___", "fairway___", "fairway___", "ob________"],
+				100: ["ob________", "fairway___", "fairway___", "woods_2___", "ob________"],
+				  0: ["ob________", "ob________", "teepad____", "ob________", "ob________"]
+			}
+		},
+		{
+			name: "P5-9",
+			par: 5,
+			layout: { 
+				800: ["ob________", "woods_3___", "fairway___", "woods_1___", "ob________"],
+				700: ["ob________", "hazard____", "basket____", "fairway___", "ob________"],
+				600: ["woods_3___", "fairway___", "woods_1___", "ob________", "ob________"],
+				500: ["ob________", "fairway___", "fairway___", "water_____", "ob________"],
+				400: ["woods_2___", "woods_3___", "fairway___", "water_____", "ob________"],
+				300: ["ob________", "fairway___", "bushes_1__", "bushes_2__", "ob________"],
+				200: ["ob________", "fairway___", "woods_3___", "hazard____", "ob________"],
+				100: ["ob________", "fairway___", "fairway___", "woods_2___", "ob________"],
+				  0: ["ob________", "ob________", "teepad____", "ob________", "ob________"]
+			}
+		},
+		]
+		function addButtons() {
+			// clean previous buttons
+			var buttons = document.getElementsByClassName("hole_button")
+			for (var i = 0, j = buttons.length; i < j; i++) {
+				buttons[0].parentNode.removeChild(buttons[0]);
 			}
 
-			var theLayouts = [
-			{
-				name: "P4-1",
-				par: 4,
-				layout: { 
-					800: ["ob________", "ob________", "ob________", "ob________", "ob________"],
-					700: ["ob________", "fairway___", "woods_2___", "woods_1___", "ob________"],
-					600: ["ob________", "woods_3___", "basket____", "hazard____", "ob________"],
-					500: ["ob________", "fairway___", "woods_1___", "fairway___", "woods_2___"],
-					400: ["ob________", "bushes_3__", "fairway___", "fairway___", "ob________"],
-					300: ["ob________", "fairway___", "bushes_1__", "woods_3___", "ob________"],
-					200: ["ob________", "bushes_3__", "fairway___", "fairway___", "ob________"],
-					100: ["ob________", "woods_3___", "fairway___", "woods_1___", "ob________"],
-					  0: ["ob________", "ob________", "teepad____", "ob________", "ob________"]
-				}
-			},
-			{
-				name: "P4-2",
-				par: 4,
-				layout: { 
-					800: ["ob________", "ob________", "ob________", "ob________", "ob________"],
-					700: ["ob________", "ob________", "ob________", "ob________", "ob________"],
-					600: ["ob________", "water_____", "woods_3___", "water_____", "ob________"],
-					500: ["ob________", "woods_1___", "basket____", "fairway___", "ob________"],
-					400: ["ob________", "fairway___", "woods_3___", "fairway___", "fairway___"],
-					300: ["ob________", "woods_2___", "woods_2___", "bushes_2__", "fairway___"],
-					200: ["ob________", "fairway___", "bushes_3__", "fairway___", "fairway___"],
-					100: ["ob________", "fairway___", "fairway___", "woods_1___", "ob________"],
-					  0: ["ob________", "ob________", "teepad____", "ob________", "ob________"]
-				}
-			},
-			{
-				name: "P4-3",
-				par: 4,
-				layout: { 
-					800: ["ob________", "ob________", "ob________", "ob________", "ob________"],
-					700: ["ob________", "ob________", "ob________", "ob________", "ob________"],
-					600: ["ob________", "ob________", "fairway___", "woods_3___", "woods_1___"],
-					500: ["ob________", "ob________", "fairway___", "basket____", "water_____"],
-					400: ["ob________", "ob________", "fairway___", "fairway___", "fairway___"],
-					300: ["ob________", "fairway___", "bushes_3__", "hazard____", "woods_2___"],
-					200: ["ob________", "woods_2___", "bushes_3__", "woods_1___", "ob________"],
-					100: ["ob________", "fairway___", "fairway___", "woods_1___", "ob________"],
-					  0: ["ob________", "ob________", "teepad____", "ob________", "ob________"]
-				}
-			},
-			{
-				name: "P4-4",
-				par: 4,
-				layout: { 
-					800: ["ob________", "ob________", "ob________", "ob________", "ob________"],
-					700: ["ob________", "woods_2___", "water_____", "woods_3___", "ob________"],
-					600: ["ob________", "fairway___", "basket____", "woods_1___", "ob________"],
-					500: ["ob________", "fairway___", "woods_3___", "fairway___", "ob________"],
-					400: ["ob________", "bushes_1__", "fairway___", "fairway___", "woods_1___"],
-					300: ["ob________", "water_____", "fairway___", "woods_1___", "ob________"],
-					200: ["ob________", "bushes_3__", "woods_3___", "bushes_2__", "ob________"],
-					100: ["ob________", "woods_3___", "fairway___", "woods_1___", "ob________"],
-					  0: ["ob________", "ob________", "teepad____", "ob________", "ob________"]
-				}
-			},
-			{
-				name: "P4-5",
-				par: 4,
-				layout: { 
-					800: ["ob________", "ob________", "ob________", "ob________", "ob________"],
-					700: ["ob________", "woods_2___", "woods_2___", "woods_3___", "ob________"],
-					600: ["ob________", "fairway___", "basket____", "hazard____", "ob________"],
-					500: ["ob________", "woods_1___", "woods_3___", "fairway___", "ob________"],
-					400: ["ob________", "bushes_1__", "fairway___", "fairway___", "fairway___"],
-					300: ["ob________", "bushes_2__", "water_____", "fairway___", "ob________"],
-					200: ["ob________", "fairway___", "woods_3___", "fairway___", "ob________"],
-					100: ["ob________", "ob________", "fairway___", "ob________", "ob________"],
-					  0: ["ob________", "ob________", "teepad____", "ob________", "ob________"]
-				}
-			},
-			]
+			// add specific hole buttons
+			var div = document.getElementById("holeButtonsContainer");
+			for (var i = 0, j = theLayouts.length; i < j; i++) {
+				button = document.createElement("button");
+				button.setAttribute("class", "hole_button");
+				button.textContent = theLayouts[i].name;
+				func = "displayHoleLayout('"+theLayouts[i].name+"');";
+				button.setAttribute("onclick", func);
+				div.appendChild(button);
+			}
+
+			// add hole count
+			randomDiv = document.getElementById("randomButtonContainer");
+			text = document.createElement("h4");
+			text.textContent = theLayouts.length + " Hole Layouts";
+			randomDiv.appendChild(text);
+		}
+		function displayHoleLayout(hole)
+		{
+
+			
 
 		    // create random image number
 			function getRandomLayout(min,max) 
 			    {
 					imn = Math.floor(Math.random() * (max - min + 1)) + min;
 			    	return theLayouts[imn];
-			    } 
+			    }
 
-			var newLayout = getRandomLayout(0, theLayouts.length - 1)
+			function getHoleLayout(hole)
+				{
+					for (var i = 0, j = theLayouts.length; i < j; i++) {
+						if (theLayouts[i].name == hole) {
+							return theLayouts[i]
+						}
+					}
+				}
+
+			if (hole == 'random') {
+				var newLayout = getRandomLayout(0, theLayouts.length - 1)
+			} else {
+				var newLayout = getHoleLayout(hole)
+			}
 
 			// remove the previously added divs
 			var div = document.getElementById("hole_container");
@@ -154,10 +523,12 @@
 		}
 	</script>
 </head>
-<body>
-<div style="text-align: center;">
-<button id="jsstyle" 
-onclick="display_random_hole_layout();">Show Random Hole Layout</button> 
+<body onload="addButtons()">
+<div id="randomButtonContainer" style="text-align: center; width: 80%; margin: 0 10%;">
+<button
+onclick="displayHoleLayout('random');">Show Random Hole Layout</button> 
+</div>
+<div id="holeButtonsContainer" style="text-align: center; width: 80%; margin: 0 10%; display: none;">
 </div>
 </body>
 </html>
