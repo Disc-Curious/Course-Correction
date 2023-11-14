@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset=utf-8 />
+	<title>Course Correction - Hole Layouts</title>
+	<style type="text/css">
+	body {margin-top: 30px;}
+	</style>
+	<script>
+		function display_random_hole_layout()
+		{
+			var theImages = {
+				"hazard____": "images/Hazard.png",
+				"teepad____": "images/Teepad.png",
+				"water_____": "images/Water.png",
+				"woods_1___": "images/Woods_1.png",
+				"woods_2___": "images/Woods_2.png",
+				"woods_3___": "images/Woods_3.png",
+				"basket____": "images/Basket.png",
+				"bushes_1__": "images/Bushes_1.png",
+				"bushes_2__": "images/Bushes_2.png",
+				"bushes_3__": "images/Bushes_3.png",
+				"fairway___": "images/Fairway.png",
+				"obstacle_1": "images/Obstacle_1.png",
+				"obstacle_2": "images/Obstacle_2.png",
+				"ob________": "images/OB.png"
+			}
+
+			var theLayouts = [
+			{
+				name: "P4-1",
+				par: 4,
+				layout: { 
+					800: ["ob________", "ob________", "ob________", "ob________", "ob________"],
+					700: ["ob________", "fairway___", "woods_2___", "woods_1___", "ob________"],
+					600: ["ob________", "woods_3___", "basket____", "hazard____", "ob________"],
+					500: ["ob________", "fairway___", "woods_1___", "fairway___", "woods_2___"],
+					400: ["ob________", "bushes_3__", "fairway___", "fairway___", "ob________"],
+					300: ["ob________", "fairway___", "bushes_1__", "woods_3___", "ob________"],
+					200: ["ob________", "bushes_3__", "fairway___", "fairway___", "ob________"],
+					100: ["ob________", "woods_3___", "fairway___", "woods_1___", "ob________"],
+					  0: ["ob________", "ob________", "teepad____", "ob________", "ob________"]
+				}
+			},
+			{
+				name: "P4-2",
+				par: 4,
+				layout: { 
+					800: ["ob________", "ob________", "ob________", "ob________", "ob________"],
+					700: ["ob________", "ob________", "ob________", "ob________", "ob________"],
+					600: ["ob________", "water_____", "woods_3___", "water_____", "ob________"],
+					500: ["ob________", "woods_1___", "basket____", "fairway___", "ob________"],
+					400: ["ob________", "fairway___", "woods_3___", "fairway___", "fairway___"],
+					300: ["ob________", "woods_2___", "woods_2___", "bushes_2__", "fairway___"],
+					200: ["ob________", "fairway___", "bushes_3__", "fairway___", "fairway___"],
+					100: ["ob________", "fairway___", "fairway___", "woods_1___", "ob________"],
+					  0: ["ob________", "ob________", "teepad____", "ob________", "ob________"]
+				}
+			},
+			{
+				name: "P4-3",
+				par: 4,
+				layout: { 
+					800: ["ob________", "ob________", "ob________", "ob________", "ob________"],
+					700: ["ob________", "ob________", "ob________", "ob________", "ob________"],
+					600: ["ob________", "ob________", "fairway___", "woods_3___", "woods_1___"],
+					500: ["ob________", "ob________", "fairway___", "basket____", "water_____"],
+					400: ["ob________", "ob________", "fairway___", "fairway___", "fairway___"],
+					300: ["ob________", "fairway___", "bushes_3__", "hazard____", "woods_2___"],
+					200: ["ob________", "woods_2___", "bushes_3__", "woods_1___", "ob________"],
+					100: ["ob________", "fairway___", "fairway___", "woods_1___", "ob________"],
+					  0: ["ob________", "ob________", "teepad____", "ob________", "ob________"]
+				}
+			},
+			]
+
+		    // create random image number
+			function getRandomLayout(min,max) 
+			    {
+					imn = Math.floor(Math.random() * (max - min + 1)) + min;
+			    	return theLayouts[imn];
+			    } 
+
+			var newLayout = getRandomLayout(0, theLayouts.length - 1)
+
+			// remove the previously added divs
+			var div = document.getElementById("hole_container");
+			if (div) {
+				div.parentNode.removeChild(div);
+			}
+
+			div = document.createElement("div")
+			div.setAttribute("style", "text-align: center");
+			div.setAttribute("id", "hole_container")
+			document.body.appendChild(div);
+
+			hole_info = document.createElement("h3");
+			hole_info.setAttribute("style", "text-align: center");
+			hole_info.textContent = "PAR "+newLayout.par+" | "+newLayout.name;
+			div.appendChild(hole_info);
+
+			distances = [800, 700, 600, 500, 400, 300, 200, 100, 0]
+			for (var i = 0, j = distances.length; i < j; i++) {
+
+				for (var k = 0, m = newLayout.layout[distances[i]].length; k < m; k++) {
+
+					image = new Image();
+					image.width = 100;
+			        image.height = 100;
+			        image.src = theImages[newLayout.layout[distances[i]][k]];
+			        image.setAttribute("style", "margin: 0 2px");
+
+					// display the image 
+					div.appendChild(image);
+				}
+				distance_image = new Image();
+				distance_image.width = 100;
+				distance_image.height = 100;
+				distance_image.src = "images/Distance_"+distances[i]+".png"
+				div.appendChild(distance_image);
+				linebreak = document.createElement("br");
+				div.appendChild(linebreak);
+			}
+
+
+		}
+	</script>
+</head>
+<body>
+<div style="text-align: center;">
+<button id="jsstyle" 
+onclick="display_random_hole_layout();">Show Random Hole Layout</button> 
+</div>
+</body>
+</html>
