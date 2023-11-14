@@ -72,6 +72,36 @@
 					  0: ["ob________", "ob________", "teepad____", "ob________", "ob________"]
 				}
 			},
+			{
+				name: "P4-4",
+				par: 4,
+				layout: { 
+					800: ["ob________", "ob________", "ob________", "ob________", "ob________"],
+					700: ["ob________", "woods_2___", "water_____", "woods_3___", "ob________"],
+					600: ["ob________", "fairway___", "basket____", "woods_1___", "ob________"],
+					500: ["ob________", "fairway___", "woods_3___", "fairway___", "ob________"],
+					400: ["ob________", "bushes_1__", "fairway___", "fairway___", "woods_1___"],
+					300: ["ob________", "water_____", "fairway___", "woods_1___", "ob________"],
+					200: ["ob________", "bushes_3__", "woods_3___", "bushes_2__", "ob________"],
+					100: ["ob________", "woods_3___", "fairway___", "woods_1___", "ob________"],
+					  0: ["ob________", "ob________", "teepad____", "ob________", "ob________"]
+				}
+			},
+			{
+				name: "P4-5",
+				par: 4,
+				layout: { 
+					800: ["ob________", "ob________", "ob________", "ob________", "ob________"],
+					700: ["ob________", "woods_2___", "woods_2___", "woods_3___", "ob________"],
+					600: ["ob________", "fairway___", "basket____", "hazard____", "ob________"],
+					500: ["ob________", "woods_1___", "woods_3___", "fairway___", "ob________"],
+					400: ["ob________", "bushes_1__", "fairway___", "fairway___", "fairway___"],
+					300: ["ob________", "bushes_2__", "water_____", "fairway___", "ob________"],
+					200: ["ob________", "fairway___", "woods_3___", "fairway___", "ob________"],
+					100: ["ob________", "ob________", "fairway___", "ob________", "ob________"],
+					  0: ["ob________", "ob________", "teepad____", "ob________", "ob________"]
+				}
+			},
 			]
 
 		    // create random image number
@@ -105,10 +135,8 @@
 				for (var k = 0, m = newLayout.layout[distances[i]].length; k < m; k++) {
 
 					image = new Image();
-					image.width = 100;
-			        image.height = 100;
 			        image.src = theImages[newLayout.layout[distances[i]][k]];
-			        image.setAttribute("style", "margin: 0 2px");
+			        image.setAttribute("style", "margin: 0 2px; width: 15%;");
 
 					// display the image 
 					div.appendChild(image);
