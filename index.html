@@ -443,7 +443,7 @@
 				for (var i = 0, j = theLayouts.length; i < j; i++) {
 					var button = document.createElement("button");
 					button.setAttribute("class", "hole_button");
-					button.setAttribute("style", "font-size: 1.2rem;")
+					button.setAttribute("style", "font-size: 2rem;")
 					button.textContent = theLayouts[i].name;
 					func = "displayHoleLayout('"+theLayouts[i].name+"');";
 					button.setAttribute("onclick", func);
@@ -452,7 +452,7 @@
 
 				// add hole count
 				var randomDiv = document.getElementById("randomButtonContainer");
-				var text = document.createElement("h4");
+				var text = document.createElement("h1");
 				text.textContent = theLayouts.length + " Hole Layouts";
 				randomDiv.appendChild(text);
 
@@ -502,7 +502,7 @@
 				div.setAttribute("id", "hole_container")
 				document.body.appendChild(div);
 
-				hole_info = document.createElement("h3");
+				hole_info = document.createElement("h1");
 				hole_info.setAttribute("style", "text-align: center");
 				hole_info.textContent = "PAR "+newLayout.par+" | "+newLayout.name;
 				div.appendChild(hole_info);
@@ -534,10 +534,10 @@
 	</head>
 	<body onload="addButtons()">
 		<div id="randomButtonContainer" style="text-align: center; width: 80%; margin: 0 10%;">
-			<button onclick="displayHoleLayout('random');" style="font-size: 1.2rem;">Show Random Hole Layout</button>
+			<button onclick="displayHoleLayout('random');" style="font-size: 2rem;">Show Random Hole Layout</button>
 		</div>
 		<div id="toggleButtonContainer" style="text-align: center; width: 80%; margin: 0 10%;">
-			<button onclick="toggleHoleButtons();" style="font-size: 1.2rem;">Toggle Hole Buttons</button>
+			<button onclick="toggleHoleButtons();" style="font-size: 2rem;">Toggle Hole Buttons</button>
 		</div>
 		<div id="holeButtonsContainer" style="text-align: center; width: 80%; margin: 0 10%; display: none;">
 		</div>
